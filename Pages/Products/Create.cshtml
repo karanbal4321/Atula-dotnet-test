@@ -1,0 +1,33 @@
+﻿@page
+@model Atula_dotnet_test.Pages.Products.CreateModel
+@{
+    ViewData["Title"] = "Create Product";
+}
+
+<h2>Create Product</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="ProductDTO.Sku" class="control-label"></label>
+        <input asp-for="ProductDTO.Sku" class="form-control" />
+        <span asp-validation-for="ProductDTO.Sku" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ProductDTO.Name" class="control-label"></label>
+        <input asp-for="ProductDTO.Name" class="form-control" />
+        <span asp-validation-for="ProductDTO.Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ProductDTO.CategoryIds" class="control-label"></label>
+        @Html.ListBoxFor(model => model.ProductDTO.CategoryIds, Model.CategorySelectList, new { @class = "form-control" })
+        <span asp-validation-for="ProductDTO.CategoryIds" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-page="./" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

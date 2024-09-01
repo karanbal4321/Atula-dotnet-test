@@ -1,0 +1,33 @@
+﻿@page "{id:int}"
+@model Atula_dotnet_test.Pages.Products.EditModel
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<h2>Edit Product</h2>
+
+<h4>Product</h4>
+<hr />
+<form method="post">
+    <div class="form-group">
+        <label asp-for="ProductDTO.Sku" class="control-label"></label>
+        <input asp-for="ProductDTO.Sku" class="form-control" />
+        <span asp-validation-for="ProductDTO.Sku" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ProductDTO.Name" class="control-label"></label>
+        <input asp-for="ProductDTO.Name" class="form-control" />
+        <span asp-validation-for="ProductDTO.Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ProductDTO.CategoryIds" class="control-label"></label>
+        <select asp-for="ProductDTO.CategoryIds" asp-items="Model.CategorySelectList" multiple="multiple" class="form-control">
+        </select>
+        <span asp-validation-for="ProductDTO.CategoryIds" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</form>
+

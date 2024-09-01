@@ -1,0 +1,44 @@
+﻿@page "{id:int}"
+@model Atula_dotnet_test.Pages.Products.DetailsModel
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<h2>Product Details</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductDTO.Sku)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductDTO.Sku)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductDTO.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductDTO.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Categories
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.ProductDTO.CategoryIds.Any())
+            {
+                var categoryNames = Model.ProductDTO.CategoryIds.Select(id => Model.CategorySelectList.FirstOrDefault(c => c.Value == id.ToString())?.Text);
+                @string.Join(", ", categoryNames)
+            }
+            else
+            {
+                <span>No Categories</span>
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.ProductDTO.Id" class="btn btn-primary">Edit</a>
+    <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+</div>
